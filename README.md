@@ -1,4 +1,8 @@
 # django-reservations
+
+.. image:: https://travis-ci.org/kojdjak/django-reservations.svg?branch=master
+    :target: http://travis-ci.org/kojdjak/django-reservations
+
 Django app for managing reservations
 
 #Prerequisites
