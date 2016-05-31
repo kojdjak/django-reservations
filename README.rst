@@ -11,8 +11,8 @@ Django app for managing reservations
 Prerequisites
 ##########
 
- - Python 3.x
- - Django is the only prerequisite at this moment. It's being tested with latest trunk version.
+- Python 3.x
+- Django is the only prerequisite at this moment. It's being tested with latest trunk version.
 
 ##########
 Installation
@@ -41,9 +41,11 @@ Add urls in your django application's urls.py. ::
     ]
 
 
-#Tests
+##########
+Tests
+##########
 
-Simply run: ::
+Simply run. ::
 
-python runtests.py
+    python runtests.py
 
