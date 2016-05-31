@@ -1,16 +1,22 @@
-# django-reservations
+##########
+django-reservations
+##########
 
 .. image:: https://travis-ci.org/kojdjak/django-reservations.svg?branch=master
     :target: http://travis-ci.org/kojdjak/django-reservations
 
 Django app for managing reservations
 
-#Prerequisites
+##########
+Prerequisites
+##########
 
  - Python 3.x
  - Django is the only prerequisite at this moment. It's being tested with latest trunk version.
 
-#Installation
+##########
+Installation
+##########
 
 Activate your virtualenv and install django-reservations from sources.
 
@@ -18,7 +24,9 @@ Activate your virtualenv and install django-reservations from sources.
 pip install -e $PATH\django-reservations
 ```
 
-#Usage
+##########
+Usage
+##########
 
 In your django application's settings.py add django-reservations in INSTALLED_APPS:
 ```python
