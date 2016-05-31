@@ -1,0 +1,4 @@
+# Install with: `pip install -r requirements.txt`
+
+# Infrastructure
+Django >= 1.9.1
