@@ -1,2 +1,2 @@
 # django-reservations
-Django module/app for managing reservations
+Django app for managing reservations
