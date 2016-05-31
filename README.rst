@@ -20,9 +20,9 @@ Installation
 
 Activate your virtualenv and install django-reservations from sources.
 
-```bash
+``bash
 pip install -e $PATH\django-reservations
-```
+``
 
 ##########
 Usage
