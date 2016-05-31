@@ -1,5 +1,5 @@
-from django.http import HttpResponse
+from django.shortcuts import render
 
 
 def index(request):
-    return HttpResponse("Hello World from Reservations!")
+    return render(request, 'reservations/index.html', {})
