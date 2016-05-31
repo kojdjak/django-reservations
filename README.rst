@@ -20,8 +20,7 @@ Installation
 
 Activate your virtualenv and install django-reservations from sources.
 
-    pip install -e $PATH\django-reservations
-
+>>>pip install -e $PATH\django-reservations
 
 ##########
 Usage
@@ -29,23 +28,22 @@ Usage
 
 In your django application's settings.py add django-reservations in INSTALLED_APPS:
 
-    INSTALLED_APPS = [
-        'reservations.apps.ReservationsConfig',
-        ...
-    ]
-
+>>>INSTALLED_APPS = [
+    'reservations.apps.ReservationsConfig',
+    ...
+]
 
 Add urls in your django application's urls.py:
 
-    urlpatterns = [
-        url(r'^reservations/', include('reservations.urls')),
-        url(r'^admin/', admin.site.urls),
-    ]
+>>>urlpatterns = [
+    url(r'^reservations/', include('reservations.urls')),
+    url(r'^admin/', admin.site.urls),
+]
 
 
 #Tests
 
 Simply run:
 
-    ./runtests.py
+>>>./runtests.py
 
