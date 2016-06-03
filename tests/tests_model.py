@@ -9,4 +9,4 @@ class IndexViewTests(TestCase):
         """
         response = self.client.get(reverse('reservations:index'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Reservationss")
+        self.assertContains(response, "Reservations")
