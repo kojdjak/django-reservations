@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-
+'''
 class Venue(models.Model):
     name = models.CharField(max_length=255)
 
@@ -12,9 +12,8 @@ class Field(models.Model):
 
 
 class Reservation(models.Model):
-    '''Reservation - model or each and every reservation.
-    '''
     name = models.CharField(max_length=255)
     user = models.ForeignKey(User)
     field = models.ForeignKey(Field)
 
+'''
