@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-'''
+
 class Venue(models.Model):
     name = models.CharField(max_length=255)
 
@@ -16,4 +16,3 @@ class Reservation(models.Model):
     user = models.ForeignKey(User)
     field = models.ForeignKey(Field)
 
-'''
