@@ -1,12 +1,13 @@
 from django.test import TestCase
-from django.core.urlresolvers import reverse
+from reservations.models import Venue, Field, Reservation
 
 
-class IndexViewTests(TestCase):
-    def test_index_view_basic(self):
-        """
-        Basic test index view.
-        """
-        response = self.client.get(reverse('reservations:index'))
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Reservations")
+class VenueModelTest(TestCase):
+    def setUp(self):
+        pass
+
+    def test_create_basic(self):
+        print("Running VenueModelTest.test_create_basic")
+        Venue.objects.create(name="Venue01")
+        venue = Venue.objects.get(name="Venue01")
+        self.assertEqual(venue.name, "Venue01")
