@@ -15,5 +15,5 @@ class Reservation(models.Model):
     name = models.CharField(max_length=255)
     user = models.ForeignKey(User)
     field = models.ForeignKey(Field)
-    time = models.DateTimeField()
+    time = models.DateTimeField(default=None, blank=True, null=True)
 
