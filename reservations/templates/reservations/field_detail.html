@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<table>
+    <tr>
+        {% for hour in hours %}
+            <td><a href="{% url 'reservations:field.reserve' field_id hour %}">{{ hour }}</a></td>
+        {% endfor %}
+    </tr>
+</table>
+
+{% endblock %}
