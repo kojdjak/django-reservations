@@ -1,1 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
 Hello World from Reservations!
+
+Here is the list of existing Fields which you could reserve:
+
+<table>
+    {% for field in fields %}
+        <tr>
+            <td><a href="{% url 'reservations:field.detail' field.id %}">{{ field.name }}</a></td>
+        </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
