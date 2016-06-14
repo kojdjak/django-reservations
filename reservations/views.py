@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from .models import Reservation, Field
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 def index(request):
@@ -12,6 +12,11 @@ def index(request):
 
 def field_detail(request, field_id):
     field = Field.objects.get(id=field_id)
+    today = datetime.today()
+    time = datetime(today.year, today.month, today.day, 0)
+    reservations = Reservation.objects.filter(time__range=[time, time+timedelta(days=1)])
+    for reservation in reservations:
+        print(reservation.name + str(reservation.time.hour) )
     return render(request, 'reservations/field_detail.html', {'field_id': field_id, 'field': field, 'hours': range(24), })
 
 
