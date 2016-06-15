@@ -5,7 +5,7 @@
 <h2>{{field.name}}</h2>
 <table>
     <tr>
-        {% for hour in hours %}
+        {% for hour, res in hours2Res %}
             <td><a href="{% url 'reservations:field.reserve' field_id hour %}">{{ hour }}</a></td>
         {% endfor %}
     </tr>
