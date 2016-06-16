@@ -2,19 +2,20 @@
 
 {% block content %}
 
-<h2>{{field.name}}</h2>
-<table>
+<h1 class="title">{{field.name}}</h1>
+<table class="pure-table">
     <tr>
         {% for hour, res in hours2res.items %}
-            <td>
-                {% if res %}
-                    {{hour}}
-                {% else %}
-                    <a href="{% url 'reservations:field.reserve' field_id hour %}">{{ hour }}</a>
-                {% endif %}
-            </td>
+            {% if res %}
+                <td>{{ hour }}</td>
+            {% else %}
+                <td>
+                <a class="cell-click" href="{% url 'reservations:field.reserve' field_id hour %}">{{ hour }}</a>
+                </td>
+            {% endif %}
         {% endfor %}
     </tr>
 </table>
+</div>
 
 {% endblock %}

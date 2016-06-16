@@ -1,1 +1,5 @@
-/* TODO */
+/* make whole cell clickable for easy reservation */
+td a.cell-click {
+    display:block;
+    width:100%;
+}
