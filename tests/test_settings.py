@@ -17,6 +17,11 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
 ]
 
+MIDDLEWARE_CLASSES = [
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+]
+
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
