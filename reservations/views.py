@@ -15,12 +15,11 @@ def index(request):
 def field_detail(request, field_id):
     field = Field.objects.get(id=field_id)
     reservations = rutils.getReservations(field_id)
-    hours2Res = dict.fromkeys(range(24))
+    hours2res = dict.fromkeys(range(24))
     for reservation in reservations:
-        if hours2Res[reservation.time.hour] :
-            hours2Res[reservation.time.hour] = reservation
+        hours2res[reservation.time.hour] = reservation
         print(reservation.name + str(reservation.time.hour) )
-    return render(request, 'reservations/field_detail.html', {'field_id': field_id, 'field': field, 'hours': range(24), 'hours2Res':hours2Res })
+    return render(request, 'reservations/field_detail.html', {'field_id': field_id, 'field': field, 'hours': range(24), 'hours2res':hours2res })
 
 
 def field_reserve(request, field_id, reservation_time):

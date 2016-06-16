@@ -5,8 +5,14 @@
 <h2>{{field.name}}</h2>
 <table>
     <tr>
-        {% for hour, res in hours2Res %}
-            <td><a href="{% url 'reservations:field.reserve' field_id hour %}">{{ hour }}</a></td>
+        {% for hour, res in hours2res.items %}
+            <td>
+                {% if res %}
+                    {{hour}}
+                {% else %}
+                    <a href="{% url 'reservations:field.reserve' field_id hour %}">{{ hour }}</a>
+                {% endif %}
+            </td>
         {% endfor %}
     </tr>
 </table>
