@@ -10,7 +10,11 @@
                 <td>{{ hour }}</td>
             {% else %}
                 <td>
-                <a class="cell-click" href="{% url 'reservations:field.reserve' field_id hour %}">{{ hour }}</a>
+                {% if res_date %}
+                    <a class="cell-click" href="{% url 'reservations:field.reserve.date' field_id res_date hour %}">{{ hour }}</a>
+                {% else %}
+                    <a class="cell-click" href="{% url 'reservations:field.reserve' field_id hour %}">{{ hour }}</a>
+                {% endif %}
                 </td>
             {% endif %}
         {% endfor %}

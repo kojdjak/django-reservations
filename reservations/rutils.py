@@ -1,4 +1,4 @@
-from django.utils import timezone
+from django.utils import timezone, dateparse
 from datetime import datetime, timedelta
 
 from .models import Reservation, Field
@@ -12,17 +12,17 @@ class ReservationExist(Exception):
     pass
 
 
-def createReservation(field_id, reservation_time, user):
+def create_reservation(field_id, res_date, reservation_time, user):
     field = Field.objects.get(id=field_id)
-    today = timezone.now()
-    time = timezone.datetime(today.year, today.month, today.day, int(reservation_time), tzinfo=today.tzinfo)
+    today = dateparse.parse_date(res_date) if res_date else timezone.now()
+    time = timezone.datetime(today.year, today.month, today.day, int(reservation_time), tzinfo=timezone.now().tzinfo)
     Reservation.objects.create(name="Reservation", field=field, user=user, time=time)
     pass
 
 
-def getReservations(field_id):
+def get_reservations(field_id, res_date):
     field = Field.objects.get(id=field_id)
-    today = timezone.now()
+    today = dateparse.parse_date(res_date)if res_date else timezone.now()
     time = timezone.datetime(today.year, today.month, today.day, 0)
     return Reservation.objects.filter(time__range=[time, time+timedelta(days=1)])
 
