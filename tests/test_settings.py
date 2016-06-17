@@ -15,6 +15,7 @@ INSTALLED_APPS = [
     'reservations.apps.ReservationsConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
+    'django.contrib.staticfiles',
 ]
 
 MIDDLEWARE_CLASSES = [
