@@ -3,10 +3,13 @@
 {% block content %}
 
 <h1 class="title">{{field.name}}</h1>
-<br/>
-<a href="{% url 'reservations:field.detail.date' field_id res_date_previous %}">Previous Day</a>
-<a href="{% url 'reservations:field.detail.date' field_id res_date_next %}">Next Day</a>
-
+<h2>{{res_date}}</h2>
+<div>
+    <a href="{% url 'reservations:field.detail.date' field_id res_date_previous %}">Previous Day</a>
+    <a href="{% url 'reservations:field.detail.date' field_id res_date_next %}">Next Day</a>
+    <br/>
+    <br/>
+</div>
 <table class="pure-table">
     <tr>
         {% for hour, res in hours2res.items %}

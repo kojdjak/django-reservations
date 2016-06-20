@@ -1,5 +1,21 @@
+html, body {
+    height: 100%;
+}
+
+html {
+    display: table;
+    margin: auto;
+}
+
+body {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
 /* make whole cell clickable for easy reservation */
 td a.cell-click {
     display:block;
     width:100%;
 }
+
