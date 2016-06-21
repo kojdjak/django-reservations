@@ -32,5 +32,5 @@ def get_reservations(field_id, res_date):
     field = Field.objects.get(id=field_id)
     today = dateparse.parse_date(res_date)if res_date else timezone.now()
     time = timezone.datetime(today.year, today.month, today.day, 0)
-    return Reservation.objects.filter(time__range=[time, time+timedelta(days=1)])
+    return Reservation.objects.filter(field=field_id).filter(time__range=[time, time+timedelta(days=1)])
 
