@@ -2,12 +2,31 @@
 
 {% block content %}
 
-<table>
+<h1 class="title">{{field.name}}</h1>
+<h2>{{fdvm.res_date}}</h2>
+<div>
+    <a href="{% url 'reservations:field.detail.date' field_id fdvm.res_date_previous %}">Previous Day</a>
+    <a href="{% url 'reservations:field.detail.date' field_id fdvm.res_date_next %}">Next Day</a>
+    <br/>
+    <br/>
+</div>
+<table class="pure-table">
     <tr>
-        {% for hour in hours %}
-            <td><a href="{% url 'reservations:field.reserve' field_id hour %}">{{ hour }}</a></td>
+        {% for hour, res in hours2res.items %}
+            {% if res %}
+                <td>{{ hour }}</td>
+            {% else %}
+                <td>
+                {% if res_date %}
+                    <a class="cell-click" href="{% url 'reservations:field.reserve.date' field.id res_date hour %}">{{ hour }}</a>
+                {% else %}
+                    <a class="cell-click" href="{% url 'reservations:field.reserve' field.id hour %}">{{ hour }}</a>
+                {% endif %}
+                </td>
+            {% endif %}
         {% endfor %}
     </tr>
 </table>
+</div>
 
 {% endblock %}

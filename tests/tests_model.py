@@ -42,3 +42,10 @@ class ReservationModelTest(TestCase):
         reservation = Reservation.objects.get(name="Reservation01")
         self.assertEqual(reservation.name, "Reservation01")
 
+    def test_create_anonymous(self):
+        print("Running ReservationModelTest.test_create_basic")
+        field01 = Field.objects.get(name="FieldReservationdTest01")
+        user01 = None
+        Reservation.objects.create(name="ReservationAnonymous", field=field01, user=user01)
+        reservation = Reservation.objects.get(name="ReservationAnonymous")
+        self.assertEqual(reservation.name, "ReservationAnonymous")
