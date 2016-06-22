@@ -1,12 +1,13 @@
 from django.test import TestCase
-from django.core.urlresolvers import reverse
+
+'''
+No tests here.
+
+All of the tests are in $ROOT/tests folder and could be run with script $ROOT/runtests.py
+
+'''
 
 
-class IndexViewTests(TestCase):
-    def test_index_view_basic(self):
-        """
-        Basic test index view.
-        """
-        response = self.client.get(reverse('reservations:index'))
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Reservations")
+class FooTests(TestCase):
+    def test_foo(self):
+        pass
