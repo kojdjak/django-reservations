@@ -62,3 +62,10 @@ def field_reserve_date(request, field_id, res_date, reservation_time):
     else:
         return HttpResponseRedirect(reverse('reservations:field.detail', kwargs={'field_id': field_id}))
 
+
+def reservation_detail(request, reservation_id):
+    """
+    Detail of reservations.
+
+    """
+    return render(request, 'reservations/reservation_detail.html', {})
