@@ -44,7 +44,7 @@ class ReservationsListTest(TestCase):
     def setUp(self):
         venue01 = Venue.objects.create(name="VenueFieldTest01")
         field = Field.objects.create(name="FieldReservationdTest01", venue=venue01)
-        rutils.create_reservation(field.id, "2016-06-21", 1, None)
+        rutils.create_reservation(field.id, "2016-06-22", 1, None)
 
     def test_reservations(self):
         url = reverse('reservations:reservations')
