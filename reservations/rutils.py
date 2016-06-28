@@ -41,3 +41,11 @@ def get_reservations(field_id, res_date):
     time = timezone.datetime(today.year, today.month, today.day, 0)
     return Reservation.objects.filter(field=field_id).filter(time__range=[time, time+timedelta(days=1)])
 
+
+def get_reservations(user):
+    """
+    Get all reservations for a user.
+    :param user: user for which to list reservations.
+    :return:
+    """
+    return Reservation.objects.filter(user=user)

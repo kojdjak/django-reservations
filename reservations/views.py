@@ -63,9 +63,20 @@ def field_reserve_date(request, field_id, res_date, reservation_time):
         return HttpResponseRedirect(reverse('reservations:field.detail', kwargs={'field_id': field_id}))
 
 
+def reservations(request):
+    """
+    List reservations.
+
+    if user is logged in, list only user's reservations.
+    """
+    ress = rutils.get_reservations(None if request.user.is_anonymous() else request.user)
+    return render(request, 'reservations/reservations.html', {'ress':ress,})
+
+
 def reservation_detail(request, reservation_id):
     """
     Detail of reservations.
 
     """
-    return render(request, 'reservations/reservation_detail.html', {})
+    res = Reservation.objects.get(id=reservation_id)
+    return render(request, 'reservations/reservation_detail.html', {'res':res,})
