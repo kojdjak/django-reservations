@@ -69,7 +69,7 @@ def reservations(request):
 
     if user is logged in, list only user's reservations.
     """
-    ress = rutils.get_reservations(None if request.user.is_anonymous() else request.user)
+    ress = rutils.get_reservations_user(None if request.user.is_anonymous() else request.user)
     return render(request, 'reservations/reservations.html', {'ress':ress,})
 
 

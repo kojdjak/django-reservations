@@ -42,7 +42,7 @@ def get_reservations(field_id, res_date):
     return Reservation.objects.filter(field=field_id).filter(time__range=[time, time+timedelta(days=1)])
 
 
-def get_reservations(user):
+def get_reservations_user(user):
     """
     Get all reservations for a user.
     :param user: user for which to list reservations.
