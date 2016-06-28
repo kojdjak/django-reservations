@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.core.urlresolvers import reverse
 from reservations.models import Venue, Field, Reservation
+from reservations import rutils
 
 
 class IndexViewTests(TestCase):
@@ -38,3 +39,19 @@ class FieldViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertNotContains(response, url_reserve_5)
         self.assertContains(response, url_reserve_6)
+
+class ReservationsListTest(TestCase):
+    def setUp(self):
+        venue01 = Venue.objects.create(name="VenueFieldTest01")
+        field = Field.objects.create(name="FieldReservationdTest01", venue=venue01)
+        rutils.create_reservation(field.id, "2016-06-21", 1, None)
+
+    def test_reservations(self):
+        url = reverse('reservations:reservations')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_reservation_detail(self):
+        url = reverse('reservations:reservation.detail', kwargs={'reservation_id':1})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)

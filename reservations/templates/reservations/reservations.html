@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Reservations</h1>
+
+Here is the list of your reservations:
+
+<br/>
+<br/>
+
+<table>
+    {% for res in ress %}
+        <tr>
+            <td><a href="{% url 'reservations:reservation.detail' res.id %}">{{ res.name }}</a></td>
+        </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
