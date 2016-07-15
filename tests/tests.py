@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.core.urlresolvers import reverse
+from django.utils import timezone
 from reservations.models import Venue, Field, Reservation
 from reservations import rutils
 
@@ -25,8 +26,10 @@ class FieldViewTests(TestCase):
         self.assertContains(response, "Reservations")
 
     def test_field_reserve(self):
-        url_reserve_5 = reverse('reservations:field.reserve', kwargs={'field_id': 1, 'reservation_time': 5,})
-        url_reserve_6 = reverse('reservations:field.reserve', kwargs={'field_id': 1, 'reservation_time': 6,})
+        url_reserve_5 = reverse('reservations:field.reserve.date',
+                                kwargs={'field_id': 1, 'res_date': timezone.now().strftime("%Y-%m-%d"), 'reservation_time': 5,})
+        url_reserve_6 = reverse('reservations:field.reserve.date',
+                                kwargs={'field_id': 1, 'res_date': timezone.now().strftime("%Y-%m-%d"), 'reservation_time': 6,})
         #get field detail. both links should be present
         response = self.client.get(reverse('reservations:field.detail', kwargs={'field_id':1}))
         self.assertEqual(response.status_code, 200)
