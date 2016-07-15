@@ -37,7 +37,7 @@ def field_detail_date(request, field_id, res_date):
     """
     field = Field.objects.get(id=field_id)
     reservations = rutils.get_reservations(field_id, res_date)
-    fdvm = FieldDetailViewModel(res_date)
+    fdvm = FieldDetailViewModel(res_date if res_date else timezone.now().strftime("%Y-%m-%d"))
     hours2res = dict.fromkeys(range(24))
     for reservation in reservations:
         hours2res[reservation.time.hour] = reservation
