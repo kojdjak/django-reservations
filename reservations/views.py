@@ -80,3 +80,14 @@ def reservation_detail(request, reservation_id):
     """
     res = Reservation.objects.get(id=reservation_id)
     return render(request, 'reservations/reservation_detail.html', {'res':res,})
+
+
+def reservation_delete(request, reservation_id):
+    """
+    Delete reservation.
+
+    Redirect to list of reservations.
+    """
+    Reservation.objects.get(id=reservation_id).delete()
+    return HttpResponseRedirect(reverse('reservations:reservations', kwargs={}))
+

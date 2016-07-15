@@ -43,7 +43,7 @@ class FieldViewTests(TestCase):
         self.assertNotContains(response, url_reserve_5)
         self.assertContains(response, url_reserve_6)
 
-class ReservationsListTest(TestCase):
+class ReservationsTest(TestCase):
     def setUp(self):
         venue01 = Venue.objects.create(name="VenueFieldTest01")
         field = Field.objects.create(name="FieldReservationdTest01", venue=venue01)
@@ -58,3 +58,8 @@ class ReservationsListTest(TestCase):
         url = reverse('reservations:reservation.detail', kwargs={'reservation_id':1})
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
+
+    def test_reservation_delete(self):
+        url = reverse('reservations:reservation.delete', kwargs={'reservation_id': 1})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 302)

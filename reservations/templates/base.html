@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="{% static "reservations/main.css" %}" />
 </head>
 <body>
+    <h1><a class="homepage" href="{% url 'reservations:index' %}">Reservations</a></h1>
+
     {% block content %}
     {% endblock %}
 </body>

@@ -16,5 +16,7 @@ urlpatterns = [
     url(r'^reservations/$',
         views.reservations, name='reservations'),    #list reservations. if logged in -> list users reservations
     url(r'^reservations/(?P<reservation_id>[0-9]+)/$',
-        views.reservation_detail, name='reservation.detail')    #detail of reservation
+        views.reservation_detail, name='reservation.detail'),    #detail of reservation
+    url(r'^reservations/(?P<reservation_id>[0-9]+)/delete/$',
+        views.reservation_delete, name='reservation.delete')  # delete reservation
 ]

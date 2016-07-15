@@ -2,14 +2,14 @@
 
 {% block content %}
 
-<h1>Reservations</h1>
-
-Here is the list of existing Fields which you could reserve:
+List all my <a href="{% url 'reservations:reservations' %}">reservations</a>.
+<br/>
+Or choose a field which you wan to reserve.
 
 <br/>
 <br/>
 
-<table>
+<table class="pure-table">
     {% for field in fields %}
         <tr>
             <td><a href="{% url 'reservations:field.detail' field.id %}">{{ field.name }}</a></td>
