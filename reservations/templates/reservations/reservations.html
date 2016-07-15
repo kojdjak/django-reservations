@@ -2,17 +2,24 @@
 
 {% block content %}
 
-<h1>Reservations</h1>
-
 Here is the list of your reservations:
 
 <br/>
 <br/>
 
-<table>
+<table class="pure-table">
+    <tr>
+        <th>Name</th>
+        <th>Time</th>
+        <th>Field</th>
+        <th></th>
+    </tr>
     {% for res in ress %}
         <tr>
             <td><a href="{% url 'reservations:reservation.detail' res.id %}">{{ res.name }}</a></td>
+            <td>{{res.time}}</td>
+            <td>{{res.field.name}}</td>
+            <td><a href="{% url 'reservations:reservation.delete' res.id %}">Delete</a></td>
         </tr>
     {% endfor %}
 </table>

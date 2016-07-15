@@ -19,3 +19,8 @@ td a.cell-click {
     width:100%;
 }
 
+a.homepage {
+    text-decoration: none;
+    color:black;
+}
+
