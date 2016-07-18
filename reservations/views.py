@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.utils import timezone, dateparse
-from .models import Reservation, Field
+from django.views.generic.list import ListView
+from .models import Reservation, Field, Venue
 from reservations import rutils
 
 
@@ -90,4 +91,9 @@ def reservation_delete(request, reservation_id):
     """
     Reservation.objects.get(id=reservation_id).delete()
     return HttpResponseRedirect(reverse('reservations:reservations', kwargs={}))
+
+
+class VenuesListView(ListView):
+    model = Venue
+    template_name = "reservations/venues.html"
 
