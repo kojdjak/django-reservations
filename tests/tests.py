@@ -84,3 +84,19 @@ class VenuesViewTest(TestCase):
         self.assertContains(response, "VenueFieldTest01")
         self.assertContains(response, "VenueFieldTest02")
         self.assertContains(response, "VenueFieldTest03")
+
+
+class VenueDetailViewTest(TestCase):
+    def setUp(self):
+        venue01 = Venue.objects.create(name="VenueFieldTest01")
+        field11 = Field.objects.create(name="FieldReservationdTest11", venue=venue01)
+        field12 = Field.objects.create(name="FieldReservationdTest12", venue=venue01)
+        venue02 = Venue.objects.create(name="VenueFieldTest02")
+        field21 = Field.objects.create(name="FieldReservationdTest21", venue=venue02)
+
+    def test_detail_simple(self):
+        response = self.client.get(reverse('reservations:venue.detail', kwargs={'pk':1}))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "FieldReservationdTest11")
+        self.assertContains(response, reverse('reservations:field.detail', kwargs={'field_id':1}))
+        self.assertNotContains(response, "FieldReservationdTest21")

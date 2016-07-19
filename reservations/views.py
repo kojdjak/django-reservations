@@ -3,6 +3,7 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.utils import timezone, dateparse
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 from .models import Reservation, Field, Venue
 from reservations import rutils
 
@@ -97,3 +98,7 @@ class VenuesListView(ListView):
     model = Venue
     template_name = "reservations/venues.html"
 
+
+class VenueDetailView(DetailView):
+    model = Venue
+    template_name = "reservations/venue_detail.html"
