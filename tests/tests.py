@@ -76,7 +76,11 @@ class VenuesViewTest(TestCase):
 
     def test_1_venue(self):
         venue01 = Venue.objects.create(name="VenueFieldTest01")
+        venue02= Venue.objects.create(name="VenueFieldTest02")
+        venue03 = Venue.objects.create(name="VenueFieldTest03")
         response = self.client.get(reverse('reservations:venues'))
         self.assertEqual(response.status_code, 200)
         self.assertNotContains(response, "No venues yet.")
         self.assertContains(response, "VenueFieldTest01")
+        self.assertContains(response, "VenueFieldTest02")
+        self.assertContains(response, "VenueFieldTest03")
