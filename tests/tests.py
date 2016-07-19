@@ -63,3 +63,20 @@ class ReservationsTest(TestCase):
         url = reverse('reservations:reservation.delete', kwargs={'reservation_id': 1})
         response = self.client.get(url)
         self.assertEqual(response.status_code, 302)
+
+
+class VenuesViewTest(TestCase):
+    def setUp(self):
+        pass
+
+    def test_no_venue(self):
+        response = self.client.get(reverse('reservations:venues'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "No venues yet.")
+
+    def test_1_venue(self):
+        venue01 = Venue.objects.create(name="VenueFieldTest01")
+        response = self.client.get(reverse('reservations:venues'))
+        self.assertEqual(response.status_code, 200)
+        self.assertNotContains(response, "No venues yet.")
+        self.assertContains(response, "VenueFieldTest01")
