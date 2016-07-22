@@ -8,7 +8,7 @@ All Venues
 
 <table class="pure-table">
     {% for venue in object_list %}
-        <tr><td>{{ venue.name }}</td></tr>
+        <tr><td><a href="{% url 'reservations:venue.detail' venue.id %}">{{venue.name}}</a></td></tr>
     {% empty %}
         <tr><td>No venues yet.</td></tr>
     {% endfor %}
