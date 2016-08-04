@@ -102,3 +102,8 @@ class VenuesListView(ListView):
 class VenueDetailView(DetailView):
     model = Venue
     template_name = "reservations/venue_detail.html"
+
+
+class VenueAllFieldsView(DetailView):
+    model = Venue
+    teamplate_name = "reservations/venue_detail.html"

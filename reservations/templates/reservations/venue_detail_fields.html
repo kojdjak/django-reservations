@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<br/>
+Venue - {{object.name}}
+<br/>
+<br/>
+
+<table class="pure-table">
+        <tr>
+            <th>Field Name</th>
+        </tr>
+    {% for field in object.field_set.all %}
+        <tr>
+            <td><a href="{% url 'reservations:field.detail' field.id %}">{{ field.name }}</a></td>
+        </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

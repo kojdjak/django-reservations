@@ -22,5 +22,7 @@ urlpatterns = [
         views.reservation_delete, name='reservation.delete'),  # delete reservation
 
     url(r'^venues/$',views.VenuesListView.as_view(), name="venues"),   #list all venues
-    url(r'^venue/(?P<pk>[0-9]+)/$', views.VenueDetailView.as_view(), name="venue.detail")  # detail of venue
+    url(r'^venue/(?P<pk>[0-9]+)/$', views.VenueDetailView.as_view(), name="venue.detail"),  # detail of venue
+    url(r'^venue/(?P<pk>[0-9]+)/fields$', views.VenueAllFieldsView.as_view(),
+        name="venueFields.detail")  # detail of venue with all fields
 ]
