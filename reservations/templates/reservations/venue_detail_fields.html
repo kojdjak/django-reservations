@@ -7,6 +7,7 @@ Venue - {{object.name}}
 <br/>
 <br/>
 
+{% comment %}
 <table class="pure-table">
         <tr>
             <th>Field Name</th>
@@ -17,12 +18,14 @@ Venue - {{object.name}}
         </tr>
     {% endfor %}
 </table>
+{% endcomment %}
 
-{% for field_id, hours2res in all_fdvm.items %}
 
 <table class="pure-table">
+{% for field_id, field_hours2res in all_fdvm.items %}
     <tr>
-        {% for hour, res in hours2res.items %}
+        <td>{{field_hours2res.0.name}}</td>
+        {% for hour, res in field_hours2res.1.items %}
             {% if res %}
                 <td>{{ hour }}</td>
             {% else %}
@@ -36,8 +39,8 @@ Venue - {{object.name}}
             {% endif %}
         {% endfor %}
     </tr>
+{% endfor %}
 </table>
 
-{% endfor %}
 
 {% endblock %}
