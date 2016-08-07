@@ -2,7 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.utils import timezone, dateparse
-from .models import Reservation, Field
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+from .models import Reservation, Field, Venue
 from reservations import rutils
 
 
@@ -90,4 +92,36 @@ def reservation_delete(request, reservation_id):
     """
     Reservation.objects.get(id=reservation_id).delete()
     return HttpResponseRedirect(reverse('reservations:reservations', kwargs={}))
+
+
+class VenuesListView(ListView):
+    model = Venue
+    template_name = "reservations/venues.html"
+
+
+class VenueDetailView(DetailView):
+    model = Venue
+    template_name = "reservations/venue_detail.html"
+
+
+class VenueAllFieldsView(DetailView):
+    model = Venue
+    template_name = "reservations/venue_detail_fields.html"
+
+    def get_context_data(self, **kwargs):
+        venueid = self.kwargs['pk']
+        venue = self.get_object()
+        res_date = timezone.now().strftime("%Y-%m-%d")
+        all_fdvm = {}
+        for field in venue.field_set.all():
+            reservations = rutils.get_reservations(field.id, res_date)
+            fdvm = FieldDetailViewModel(res_date if res_date else timezone.now().strftime("%Y-%m-%d"))
+            hours2res = dict.fromkeys(range(24))
+            for reservation in reservations:
+                hours2res[reservation.time.hour] = reservation
+            all_fdvm[field.id] = hours2res
+        context = super(VenueAllFieldsView, self).get_context_data(**kwargs)
+        context['all_fdvm'] = all_fdvm
+        return context
+
 
