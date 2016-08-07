@@ -18,4 +18,26 @@ Venue - {{object.name}}
     {% endfor %}
 </table>
 
+{% for field_id, hours2res in all_fdvm.items %}
+
+<table class="pure-table">
+    <tr>
+        {% for hour, res in hours2res.items %}
+            {% if res %}
+                <td>{{ hour }}</td>
+            {% else %}
+                <td>
+                {% if fdvm.res_date %}
+                    <a class="cell-click" href="{% url 'reservations:field.reserve.date' field_id fdvm.res_date hour %}">{{ hour }}</a>
+                {% else %}
+                    <a class="cell-click" href="{% url 'reservations:field.reserve' field_id hour %}">{{ hour }}</a>
+                {% endif %}
+                </td>
+            {% endif %}
+        {% endfor %}
+    </tr>
+</table>
+
+{% endfor %}
+
 {% endblock %}

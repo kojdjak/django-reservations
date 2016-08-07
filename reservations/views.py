@@ -106,4 +106,22 @@ class VenueDetailView(DetailView):
 
 class VenueAllFieldsView(DetailView):
     model = Venue
-    teamplate_name = "reservations/venue_detail.html"
+    template_name = "reservations/venue_detail_fields.html"
+
+    def get_context_data(self, **kwargs):
+        venueid = self.kwargs['pk']
+        venue = self.get_object()
+        res_date = timezone.now().strftime("%Y-%m-%d")
+        all_fdvm = {}
+        for field in venue.field_set.all():
+            reservations = rutils.get_reservations(field.id, res_date)
+            fdvm = FieldDetailViewModel(res_date if res_date else timezone.now().strftime("%Y-%m-%d"))
+            hours2res = dict.fromkeys(range(24))
+            for reservation in reservations:
+                hours2res[reservation.time.hour] = reservation
+            all_fdvm[field.id] = hours2res
+        context = super(VenueAllFieldsView, self).get_context_data(**kwargs)
+        context['all_fdvm'] = all_fdvm
+        return context
+
+
